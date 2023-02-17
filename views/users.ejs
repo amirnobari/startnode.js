@@ -1,0 +1,83 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="/csss/style.css" </head>
+    <title>All users views</title>
+
+<body>
+    <% if(errors.length){%>
+        <div>
+            <ul>
+                <% errors.forEach(err=>{%>
+                    <li>
+                        <%=err.msg%>
+                    </li>
+                    <% })%>
+            </ul>
+        </div>
+        <% }%>
+
+            <% if(massage){%>
+
+                <h4>
+                    <%= massage %>
+                </h4>
+
+                <% }%>
+
+
+
+
+                    <div>
+                        <form action="/user" method="post">
+                            <input type="text" placeholder="id" name="id">
+                            <input type="text" placeholder="first_name" name="first_name">
+                            <input type="text" placeholder="last_name" name="last_name">
+                            <input type="text" placeholder="email" name="email">
+                            <input type="text" placeholder="password" name="password">
+                            <input type="submit">
+                        </form>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>first_name </th>
+                                <th>last_name</th>
+                                <th>email</th>
+                                <th>password</th>
+                                <th>operation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% users.forEach(user=> {%>
+                                <tr>
+                                    <td>
+                                        <%= user.id %>
+                                    </td>
+                                    <td>
+                                        <%= user.first_name %>
+                                    </td>
+                                    <td>
+                                        <%= user.last_name %>
+                                    </td>
+                                    <td>
+                                        <%= user.email %>
+                                    </td>
+                                    <td>
+                                        <%= user.password %>
+                                    </td>
+                                    <td>
+                                        <form action="/user/<%= user.id %>?method=delete" method="post">
+                                            <input type="submit" value="remove">
+                                        </form>
+                                        <a href="/user/<%= user.id %>">update</a>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                        </tbody>
+                    </table>
+
+</body>
+
+</html>
