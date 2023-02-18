@@ -64,14 +64,17 @@
         <div class="panel panel-primary">
           <div class="panel-heading text-center">حساب کاربری</div>
           <div class="panel-body">
-            <form action="/auth" method="post">
+          
+         <%-include('../components/validation-error')-%>
+           <form action="/auth/login" method="post">
+              
               <div class="form-group" >
                 <label for="exampleInputEmail1">ایمیل شما</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="ایمیل" required>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="email" >
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">کلمه عبور</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="کلمه عبور" required>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="password" >
               </div>
 
               <div class="checkbox">
