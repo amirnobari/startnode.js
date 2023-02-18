@@ -13,8 +13,8 @@ router.get("/mainpage", authController.mainpage);
 router.get("/discounted", authController.discounted);
 
 
-router.post("/login", authController.login);
-router.post("/register", authController.register);
+router.post("/login",authValidator.login(),authController.login);
+router.post("/register",authValidator.register() ,authController.register);
 
 
 module.exports = router;
