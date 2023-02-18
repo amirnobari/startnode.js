@@ -5,7 +5,6 @@ const { validationResult } = require("express-validator");
 const { render } = require("ejs");
 
 class UserController extends controller {
-  
   async registerform(req, res, next) {
     try {
 res.render('auth/register')
@@ -26,7 +25,12 @@ res.render('auth/login')
 
   async login(req, res, next) {
     try {
-      console.log("login");
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        req.flash("errors", errors.array());
+        return res.redirect("/auth/login");
+      }
+          console.log("login");
     } catch (err) {
       next(err);
     }
@@ -34,6 +38,11 @@ res.render('auth/login')
 
   async register(req, res, next) {
     try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        req.flash("errors", errors.array());
+        return res.redirect("/auth/register");
+      }
       console.log("register");
     } catch (err) {
       next(err);

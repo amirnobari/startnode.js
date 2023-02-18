@@ -5,18 +5,7 @@
     <title>All users views</title>
 
 <body>
-    <% if(errors.length){%>
-        <div>
-            <ul>
-                <% errors.forEach(err=>{%>
-                    <li>
-                        <%=err.msg%>
-                    </li>
-                    <% })%>
-            </ul>
-        </div>
-        <% }%>
-
+    <%-include('components/validation-error')-%>
             <% if(massage){%>
 
                 <h4>

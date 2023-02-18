@@ -15,6 +15,8 @@
 </head>
 
 <body>
+
+    
     <div class="container">
         <div class="row" id="header">
             <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -64,28 +66,33 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading text-center">ایجاد حساب کاربری</div>
                     <div class="panel-body">
-                        <form>
+         <%-include('../components/validation-error')-%>
+                        
+                        <form action="/auth/register" method="post">
+
+                            <div class="form-group">
+                                <label for="name">نام کاربری</label>
+                                <input type="text" class="form-control" placeholder="name">
+                            </div>
+
+
                             <div class="form-group">
                                 <label for="exampleInputEmail1">ایمیل شما</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="ایمیل"
-                                    required>
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="email">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">کلمه عبور</label>
                                 <input type="password" class="form-control" id="exampleInputPassword1"
-                                    placeholder="کلمه عبور" required>
+                                    placeholder="password">
                             </div>
 
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">تکرار کلمه عبور</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1"
-                                    placeholder="تکرار کلمه عبور" required>
-                            </div>
+
 
                     </div>
                     <button type="submit" class="btn btn-success btn-block">ثبت نام</button>
                     </form>
                 </div>
+
             </div>
 
 
