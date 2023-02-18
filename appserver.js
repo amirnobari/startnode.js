@@ -30,6 +30,10 @@ app.use(
     saveUninitialized: true,
   })
 );
+app.use((req,res,next)=>{
+  res.locals={errors:req.flash("errors")};
+  next();
+  });
 app.use("/", require("./routes/index"));
 
 app.listen(config.port, () => {
