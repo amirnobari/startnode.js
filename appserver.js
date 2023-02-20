@@ -5,8 +5,9 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const flash = require("connect-flash");
 const mongoose = require("mongoose");
+const MongoStore = require("connect-mongo");
 
-require('app-module-path').addPath(__dirname);
+require("app-module-path").addPath(__dirname);
 
 require("dotenv").config();
 
@@ -28,12 +29,17 @@ app.use(
     secret: process.env.session_secret,
     resave: true,
     saveUninitialized: true,
+    cookie: { expires: new Date(Date.now() + 1000 * 3600 * 24 * 7) },
+    store: MongoStore.create({
+      mongoUrl: "mongodb://127.0.0.1:27017/firstnode",
+    }),
   })
 );
-app.use((req,res,next)=>{
-  res.locals={errors:req.flash("errors")};
+
+app.use((req, res, next) => {
+  res.locals = { errors: req.flash("errors") };
   next();
-  });
+});
 app.use("/", require("./routes/index"));
 
 app.listen(config.port, () => {
