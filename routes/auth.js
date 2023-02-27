@@ -7,10 +7,16 @@ const authController = require("controllers/authController");
 //validators
 const authValidator = require("validators/authValidator");
 
+router.use((req,res,next)=>{
+    if(req.isAuthenticated()){
+        return res.redirect('/dashboard');
+    }
+    next();
+})
+
 router.get("/login", authController.loginform);
 router.get("/register", authController.registerform);
-router.get("/mainpage", authController.mainpage);
-router.get("/discounted", authController.discounted);
+
 
 
 router.post("/login",authValidator.login(),authController.login);
