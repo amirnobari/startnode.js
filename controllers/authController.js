@@ -1,14 +1,12 @@
 let controller = require("./controller");
 const User = require("models/user");
-
+const passport = require("passport");
 const { validationResult } = require("express-validator");
-const { render } = require("ejs");
 
 class UserController extends controller {
   async registerform(req, res, next) {
     try {
-res.render('auth/register')
-
+      res.render("auth/register");
     } catch (err) {
       next(err);
     }
@@ -16,8 +14,7 @@ res.render('auth/register')
 
   async loginform(req, res, next) {
     try {
-res.render('auth/login')
-
+      res.render("auth/login");
     } catch (err) {
       next(err);
     }
@@ -30,7 +27,13 @@ res.render('auth/login')
         req.flash("errors", errors.array());
         return res.redirect("/auth/login");
       }
-          console.log("login");
+      passport.authenticate("local.login", (err, user) => {
+        if (!user) return res.redirect("/auth/login");
+        req.logIn(user, err => {
+          return res.redirect("/dashboard")
+        
+               })
+      })(req,res,next)
     } catch (err) {
       next(err);
     }
@@ -43,25 +46,11 @@ res.render('auth/login')
         req.flash("errors", errors.array());
         return res.redirect("/auth/register");
       }
-      console.log("register");
-    } catch (err) {
-      next(err);
-    }
-  }
-
-
-  async mainpage(req, res, next) {
-    try {
-res.render('auth/mainpage')
-
-    } catch (err) {
-      next(err);
-    }
-  }
-
-  async discounted(req,res,next){
-    try {
-      res.render('auth/discounted')
+      passport.authenticate("local.register", {
+        successRedirect: "/dashboard",
+        failureRedirect: "/auth/register",
+        failureFlash: "true",
+      })(req, res, next);
     } catch (err) {
       next(err);
     }
