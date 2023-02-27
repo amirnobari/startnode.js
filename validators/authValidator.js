@@ -1,7 +1,7 @@
 const validator = require("./validator");
 const { check } = require("express-validator");
 
-module.exports = new class UserValidator extends validator {
+module.exports = new class AuthValidator extends validator {
   register() {
     return [
        // username must be an name
@@ -12,7 +12,7 @@ module.exports = new class UserValidator extends validator {
       check("password", "طول پسورد بایستی بیشتر از 5 کاراکتر باشد").isLength({
         min: 5,
       }),
-    ];
+    ]
   }
 
   login() {
@@ -23,7 +23,7 @@ module.exports = new class UserValidator extends validator {
       check("password", "طول پسورد بایستی بیشتر از 5 کاراکتر باشد").isLength({
         min: 5,
       }),
-    ];
+    ]
   }
 
 };
