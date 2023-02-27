@@ -12,7 +12,7 @@ class UserController extends controller {
         users: users,
         title: "all users",
         errors: req.flash("errors"),
-        massage: req.flash("massage"),
+        message: req.flash("message"),
       });
     } catch (err) {
       next(err);
@@ -39,8 +39,8 @@ class UserController extends controller {
       }
       req.body.id = parseInt(req.body.id);
       let newUser = new User({
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
+        name: req.body.name,
+       
         email: req.body.email,
         password: req.body.password,
       });
@@ -56,7 +56,7 @@ class UserController extends controller {
   async updateUser(req, res, next) {
     try {
       await User.updateMany({ _id: req.params.id }, { $set: req.body });
-      req.flash("massage", "کاربر جدید با موفقیت بروزرسانی شد!");
+      req.flash("message", "کاربر جدید با موفقیت بروزرسانی شد!");
       return res.redirect("/user");
     } catch (err) {
       next(err);
@@ -66,7 +66,7 @@ class UserController extends controller {
   async deleteUser(req, res, next) {
     try {
       await User.deleteMany({ _id: req.params.id });
-      req.flash("massage", "کاربر مورد نظر با موفقیت حذف شد!");
+      req.flash("message", "کاربر مورد نظر با موفقیت حذف شد!");
       return res.redirect("/user");
     } catch (err) {
       next(err);
