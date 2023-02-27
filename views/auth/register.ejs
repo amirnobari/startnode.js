@@ -16,7 +16,7 @@
 
 <body>
 
-    
+
     <div class="container">
         <div class="row" id="header">
             <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -36,20 +36,11 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li class="#"><a href="http://localhost:4000/auth/mainpage">صفحه اصلی
-                                    <span class="sr-only">(current)</span></a></li>
-                            <li class="active"><a href="http://localhost:4000/auth/login"> حساب
-                                    کاربری </a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                    aria-haspopup="true" aria-expanded="false">دوره های رایگان <span
-                                        class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="http://localhost:4000/auth/discounted">آموزش
-                                            HTML5</a></li>
 
-                                </ul>
-                            </li>
+
+
+                        </ul>
+                        </li>
                         </ul>
                         <form class="navbar-form navbar-left">
                             <a href=http://localhost:4000/auth/mainpage title="www.ProLearn.com"> <img
@@ -66,31 +57,31 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading text-center">ایجاد حساب کاربری</div>
                     <div class="panel-body">
-         <%-include('../components/validation-error')-%>
-                        
+
                         <form action="/auth/register" method="post">
 
                             <div class="form-group">
                                 <label for="name">نام کاربری</label>
-                                <input type="text" class="form-control" placeholder="name">
+                                <input type="text" class="form-control" placeholder="name" name="name">
                             </div>
 
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">ایمیل شما</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="email">
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="email"
+                                    name="email">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">کلمه عبور</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1"
-                                    placeholder="password">
+                                <input type="text" class="form-control" id="exampleInputPassword1"
+                                    placeholder="password" name="password">
                             </div>
 
-
-
                     </div>
-                    <button type="submit" class="btn btn-success btn-block">ثبت نام</button>
+                    <input type="submit" class="btn btn-success btn-block" value="ثبت نام"></input>
                     </form>
+                    <%-include('../components/validation-error')-%>
+
                 </div>
 
             </div>

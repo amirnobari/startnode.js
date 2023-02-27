@@ -9,9 +9,9 @@
 
   <link rel="stylesheet" href="/css/bootstrap-rtl.css">
   <link rel="stylesheet" href="/fonts/glyphicons-halflings-regular.svg">
+ 
   <script src="/scripts/jquery-1.10.2.min.js"></script>
   <script src="/scripts/bootstrap-rtl.js"></script>
-
 </head>
 
 <body>
@@ -34,17 +34,8 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li class="#"><a href="http://localhost:4000/auth/mainpage">صفحه اصلی
-                  <span class="sr-only">(current)</span></a></li>
-              <li class="active"><a href="http://localhost:4000/auth/login">حساب
-                  کاربری</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">دوره های رایگان <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="http://localhost:4000/auth/discounted">آموزش HTML5</a>
-                  </li>
-
+             
+              
                 </ul>
               </li>
             </ul>
@@ -65,33 +56,28 @@
           <div class="panel-heading text-center">حساب کاربری</div>
           <div class="panel-body">
           
-         <%-include('../components/validation-error')-%>
+         
            <form action="/auth/login" method="post">
               
               <div class="form-group" >
                 <label for="exampleInputEmail1">ایمیل شما</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="email" >
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="email" name="email"/>
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">کلمه عبور</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="password" >
+                <input type="password"  class="form-control"placeholder="password" id="myInput" name="password"/>
+                <input type="checkbox" onclick="myFunction()">نمایش گذرواژه
               </div>
-
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox"> مرا به خاطر بسپار
-                </label>
-              </div>
-              <button type="submit" class="btn btn-success btn-block">ورود به سایت</button>
+                          <input type="submit" class="btn btn-success btn-block" value="ورود به سایت" />
               <br>
-              <a href="http://localhost:4000/auth/register" class="btn btn-primary btn-lg active btn-block" role="button">جهت
-                ثبت نام کلیک کنید</a>
+              <a href="http://localhost:4000/auth/register" class="btn btn-primary btn-lg active btn-block" role="button">جهت ثبت نام کلیک کنید</a>
 
 
             </form>
+        <%-include('../components/validation-error')-%>
+            
           </div>
         </div>
-
 
 
 
@@ -133,5 +119,14 @@
   </footer>
 
 </body>
-
+<script>
+  function myFunction() {
+  var x = document.getElementById("myInput");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
 </html>

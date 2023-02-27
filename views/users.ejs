@@ -6,10 +6,10 @@
 
 <body>
     <%-include('components/validation-error')-%>
-            <% if(massage){%>
+            <% if(message){%>
 
                 <h4>
-                    <%= massage %>
+                    <%= message %>
                 </h4>
 
                 <% }%>
@@ -20,8 +20,7 @@
                     <div>
                         <form action="/user" method="post">
                             <input type="text" placeholder="id" name="id">
-                            <input type="text" placeholder="first_name" name="first_name">
-                            <input type="text" placeholder="last_name" name="last_name">
+                            <input type="text" placeholder="name" name="name">
                             <input type="text" placeholder="email" name="email">
                             <input type="text" placeholder="password" name="password">
                             <input type="submit">
@@ -31,8 +30,7 @@
                         <thead>
                             <tr>
                                 <th>id</th>
-                                <th>first_name </th>
-                                <th>last_name</th>
+                                <th>name </th>
                                 <th>email</th>
                                 <th>password</th>
                                 <th>operation</th>
@@ -45,11 +43,9 @@
                                         <%= user.id %>
                                     </td>
                                     <td>
-                                        <%= user.first_name %>
+                                        <%= user.name %>
                                     </td>
-                                    <td>
-                                        <%= user.last_name %>
-                                    </td>
+                                    
                                     <td>
                                         <%= user.email %>
                                     </td>
