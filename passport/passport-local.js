@@ -16,7 +16,7 @@ passport.use("local.register",new localStrategy(
     {
         usernameField:'email',
         passwordField:'password',
-        passReqToCallback:true,
+        passReqToCallback: true,
     },async(req,email,password,done)=>{
         try {
             
