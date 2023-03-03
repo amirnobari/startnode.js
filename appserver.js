@@ -29,7 +29,7 @@ app.use(
     secret: process.env.session_secret,
     resave: true,
     saveUninitialized: true,
-    cookie: { expires: new Date(Date.now() + 1000 * 3600 * 24 * 7) },
+    cookie: { expires: new Date(Date.now() + 1000 * 3600 * 24 * 7) },secure: true ,
     store: MongoStore.create({
       mongoUrl: "mongodb://127.0.0.1:27017/firstnode"}),
   })
