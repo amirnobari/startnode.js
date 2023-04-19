@@ -1,6 +1,6 @@
 FROM node:18.14.0-alpine
 
-LABEL maintainer="Mostafa Rostam Dokht Effati"
+LABEL maintainer="َAmir Nobari"
 
 RUN corepack disable yarn
 # RUN npm i -g yarn
