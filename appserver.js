@@ -5,14 +5,13 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const flash = require("connect-flash");
 const mongoose = require("mongoose");
-const passport=require('passport');
+const passport = require('passport');
 const MongoStore = require("connect-mongo");
 
 require("app-module-path").addPath(__dirname);
-require("dotenv").config();
-
+mongoose.set('strictQuery', true);
 mongoose
-  .connect("mongodb://127.0.0.1:27017/firstnode")
+  .connect(`mongodb://${ process.env.MONGO_HOSTNAME }:${ process.env.MONGO_PORT }/${ process.env.MONGO_INITDB_DATABASE }`)
   .then(() => console.log("Connected to server!"));
 
 global.config = require("./config");
@@ -29,9 +28,10 @@ app.use(
     secret: process.env.session_secret,
     resave: true,
     saveUninitialized: true,
-    cookie: { expires: new Date(Date.now() + 1000 * 3600 * 24 * 7) },secure: true ,
+    cookie: { expires: new Date(Date.now() + 1000 * 3600 * 24 * 7) }, secure: true,
     store: MongoStore.create({
-      mongoUrl: "mongodb://127.0.0.1:27017/firstnode"}),
+      mongoUrl: `mongodb://${ process.env.MONGO_INITDB_USERNAME }:${ process.env.MONGO_INITDB_PASSWORD }@${ process.env.MONGO_HOSTNAME }:${ process.env.MONGO_PORT }/${ process.env.MONGO_INITDB_DATABASE }?retryWrites=true`
+    }),
   })
 );
 
@@ -40,12 +40,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use((req, res, next) => {
-  res.locals = { errors: req.flash("errors"),req};
+  res.locals = { errors: req.flash("errors"), req };
   next();
 });
 
 app.use("/", require("./routes/index"));
 
-app.listen(config.port, () => {
+app.listen(process.env.APP_PORT, process.env.APP_HOSTNAME, () => {
   console.log("server is runnig on port :" + config.port);
 });
