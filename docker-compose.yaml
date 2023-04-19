@@ -41,7 +41,7 @@ services:
     networks:
       - default
     volumes:
-      - ./docker/volumes/db_mongo/data:/data/db:z
+      - ./docker/volumes/db_mongo/data:/data/db:rw
       - ./docker/db_mongo_initdb.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
 
   mongo_express:
