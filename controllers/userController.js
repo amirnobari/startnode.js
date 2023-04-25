@@ -40,13 +40,12 @@ class UserController extends controller {
       req.body.id = parseInt(req.body.id);
       let newUser = new User({
         name: req.body.name,
-       
         email: req.body.email,
         password: req.body.password,
       });
       await newUser.save();
       // users.push(req.body);
-      req.flash("massage", "کاربر جدید با موفقیت ثبت شد!");
+      req.flash("message", "کاربر جدید با موفقیت ثبت شد!");
       return res.redirect("/user");
     } catch (err) {
       next(err);

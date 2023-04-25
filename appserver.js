@@ -11,9 +11,17 @@ const MongoStore = require("connect-mongo");
 require("app-module-path").addPath(__dirname);
 mongoose.set('strictQuery', true);
 mongoose
-  .connect(`mongodb://${ process.env.MONGO_HOSTNAME }:${ process.env.MONGO_PORT }/${ process.env.MONGO_INITDB_DATABASE }`)
+  .connect(`mongodb://${ process.env.MONGO_HOSTNAME }:${ process.env.MONGO_PORT }/${ process.env.MONGO_INITDB_USERNAME }`, {
+    user: process.env.MONGO_INITDB_USERNAME,
+    pass: process.env.MONGO_INITDB_PASSWORD,
+    dbName: process.env.MONGO_INITDB_DATABASE,
+    retryWrites: true,
+    authSource: process.env.MONGO_INITDB_DATABASE,
+    authMechanism: "SCRAM-SHA-256",
+    auth: { username: process.env.MONGO_INITDB_USERNAME, password: process.env.MONGO_INITDB_PASSWORD }
+  })
   .then(() => console.log("Connected to server!"));
-
+ 
 global.config = require("./config");
 app.use(flash());
 app.use(express.static(__dirname + "/public"));

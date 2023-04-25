@@ -15,6 +15,7 @@ module.exports = new class AuthValidator extends validator {
     ]
   }
 
+
   login() {
     return [
       // username must be an email
